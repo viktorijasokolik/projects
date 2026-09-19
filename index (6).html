@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08120E">
+<meta name="color-scheme" content="dark">
+<title>Калькулятор схуднення · Безкоштовна консультація лікаря</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:#08120E;
+  --surf:#11221B;
+  --surf2:#1A3227;
+  --line:#2A4A3A;
+  --bone:#F2EFE7;
+  --dim:#A3B8AC;
+  --mint:#7CEBAB;
+  --apricot:#FFB56B;
+  --warn:#FF8F6B;
+  --blue:#8FB5F5;
+  --r:16px;
+
+  /* type scale — bounded by BOTH width and height, mobile-safe floors */
+  --f1:clamp(2.05rem, min(5.6vw, 8.4vh), 4.4rem);
+  --f2:clamp(1.36rem, min(2.6vw, 4.2vh), 2.1rem);
+  --f3:clamp(1.08rem, min(1.55vw, 2.5vh), 1.5rem);
+  --f4:clamp(1rem, min(1.2vw, 2vh), 1.15rem);
+  --f5:clamp(.88rem, min(1vw, 1.7vh), .98rem);
+
+  --sp:clamp(16px, 2.6vh, 26px);
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+  color-scheme:dark;
+  background:#08120E;
+  background-color:var(--ink);
+  min-height:100%;
+}
+body{
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  background:#08120E;
+  background-color:var(--ink);
+  color:var(--bone);
+  height:100dvh;overflow:hidden;line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+/* painted backdrop — survives webviews that override body background */
+.page-bg{
+  position:fixed;inset:-2px;z-index:-2;pointer-events:none;
+  background:#08120E;
+  background-color:var(--ink);
+}
+.page-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(120vmin 90vmin at 50% -20%, rgba(124,235,171,.13), transparent 65%),
+    radial-gradient(90vmin 70vmin at 100% 110%, rgba(255,181,107,.08), transparent 60%);
+}
+
+.screen{
+  position:fixed;inset:0;display:none;place-items:center;
+  padding:max(18px,3vh) max(20px,4vw);
+  padding-top:max(18px,3vh,env(safe-area-inset-top));
+  padding-bottom:max(18px,3vh,env(safe-area-inset-bottom));
+}
+.screen.on{display:grid}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  width:100%;max-width:min(920px,88vw);
+  max-height:100%;overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  gap:var(--sp);
+  padding:4px 2px;
+}
+.hero::-webkit-scrollbar{display:none}
+
+.tag{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:var(--f5);font-weight:600;color:var(--mint);
+  background:rgba(124,235,171,.09);
+  border:1px solid rgba(124,235,171,.22);
+  border-radius:100px;padding:.55em 1.25em;
+  margin-bottom:2px;
+}
+.tag .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--mint);
+  animation:blip 2.4s infinite;
+}
+@keyframes blip{0%{box-shadow:0 0 0 0 rgba(124,235,171,.55)}70%{box-shadow:0 0 0 8px rgba(124,235,171,0)}100%{box-shadow:0 0 0 0 rgba(124,235,171,0)}}
+
+h1{
+  font-family:'Fraunces',Georgia,serif;
+  font-size:var(--f1);font-weight:600;
+  line-height:1.04;letter-spacing:-.022em;
+  max-width:16ch;
+  font-variation-settings:'SOFT' 24,'opsz' 120;
+}
+h1 em{font-style:normal;color:var(--mint)}
+
+.lede{
+  font-size:var(--f3);color:var(--dim);
+  max-width:46ch;line-height:1.5;
+}
+
+.perks{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(8px,1.4vw,14px);width:100%;
+}
+.perk{
+  background:var(--surf);border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:clamp(12px,1.9vh,22px) clamp(10px,1.4vw,18px);
+  display:flex;flex-direction:column;align-items:center;gap:.55em;
+  text-align:center;
+}
+.perk svg{width:clamp(20px,2.4vh,28px);height:auto;stroke:var(--mint);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.perk b{font-size:var(--f4);font-weight:600;line-height:1.25}
+.perk small{font-size:var(--f5);color:var(--dim);line-height:1.35}
+
+.cta-zone{display:flex;flex-direction:column;align-items:center;gap:calc(var(--sp)*.5);margin-top:2px;width:100%}
+
+.btn{
+  font-family:inherit;font-size:var(--f3);font-weight:700;
+  color:#08120E;-webkit-appearance:none;appearance:none;
+  background:linear-gradient(180deg,#FFC98A,#F5A552);
+  border:none;border-radius:calc(var(--r) - 2px);
+  padding:.92em 2.2em;cursor:pointer;
+  max-width:100%;
+  box-shadow:0 .7em 2.4em -.7em rgba(255,181,107,.7), inset 0 1px 0 rgba(255,255,255,.4);
+  transition:transform .2s, box-shadow .2s, filter .2s;
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 1em 3em -.7em rgba(255,181,107,.85), inset 0 1px 0 rgba(255,255,255,.4)}
+.btn:active{transform:translateY(0)}
+
+.note{font-size:var(--f5);color:var(--dim)}
+.note b{color:var(--bone);font-weight:600}
+
+/* ═══════════ SHEET ═══════════ */
+.veil{
+  position:fixed;inset:0;z-index:60;display:none;
+  background:rgba(3,8,6,.78);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  place-items:center;padding:max(12px,2vh) max(14px,3vw);
+}
+.veil.on{display:grid}
+
+.sheet{
+  width:100%;max-width:520px;max-height:min(94dvh,820px);
+  background:var(--surf);border:1px solid var(--line);
+  border-radius:clamp(18px,2.6vh,24px);
+  box-shadow:0 40px 100px -25px rgba(0,0,0,.8);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:rise .32s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes rise{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+
+.stop{
+  display:flex;align-items:center;gap:14px;flex:none;
+  padding:clamp(14px,2vh,20px) clamp(18px,2.6vw,28px);
+  border-bottom:1px solid var(--line);
+}
+.ruler{flex:1;height:20px}
+.ruler svg{width:100%;height:100%;display:block}
+.ruler .rt{stroke:#2A4A3A;stroke-width:2;stroke-linecap:round}
+.ruler .rf{stroke:var(--mint);stroke-width:2;stroke-linecap:round}
+.snum{font-size:var(--f5);font-weight:700;color:var(--dim);font-variant-numeric:tabular-nums}
+.x{
+  flex:none;width:34px;height:34px;border-radius:10px;
+  border:1px solid var(--line);background:transparent;
+  color:var(--dim);font-size:1rem;cursor:pointer;
+  display:grid;place-items:center;transition:.2s;
+}
+.x:hover{background:var(--surf2);color:var(--bone)}
+
+.sbody{padding:clamp(20px,3vh,30px) clamp(18px,2.6vw,28px) clamp(22px,3vh,30px);overflow-y:auto;flex:1}
+
+.step{display:none}
+.step.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.q{
+  font-family:'Fraunces',serif;font-size:var(--f2);font-weight:600;
+  line-height:1.15;letter-spacing:-.015em;margin-bottom:clamp(16px,2.4vh,24px);
+}
+
+.opts{display:grid;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surf2);border:1.5px solid transparent;
+  border-radius:var(--r);
+  padding:clamp(13px,1.8vh,18px) clamp(14px,1.6vw,18px);
+  cursor:pointer;text-align:left;font-family:inherit;color:var(--bone);
+  transition:border-color .18s,background .18s,transform .12s;
+}
+.opt:hover{border-color:rgba(124,235,171,.4);background:#204034}
+.opt:active{transform:scale(.99)}
+.opt.sel{border-color:var(--mint);background:rgba(124,235,171,.1)}
+.opt-i{
+  width:2.4em;height:2.4em;flex:none;border-radius:11px;
+  background:rgba(124,235,171,.1);display:grid;place-items:center;
+  font-size:var(--f4);
+}
+.opt-t{font-size:var(--f4);font-weight:600;line-height:1.25;display:block}
+.opt-d{font-size:var(--f5);color:var(--dim);margin-top:2px;display:block}
+
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:var(--f5);font-weight:600;color:var(--dim);margin-bottom:7px}
+.fw{position:relative}
+.inp{
+  width:100%;background:var(--surf2);
+  border:1.5px solid var(--line);border-radius:var(--r);
+  padding:.85em 3.4em .85em 1em;
+  font-family:inherit;font-size:var(--f3);font-weight:600;
+  color:var(--bone);outline:none;transition:.18s;
+  font-variant-numeric:tabular-nums;
+}
+.inp::placeholder{color:#5D7A6B;font-weight:400}
+.inp:focus{border-color:var(--mint);background:#204034}
+.inp.bad{border-color:var(--warn)}
+.suf{position:absolute;right:1.1em;top:50%;transform:translateY(-50%);font-size:var(--f5);color:var(--dim);pointer-events:none;font-weight:500}
+.pre{position:absolute;left:1em;top:50%;transform:translateY(-50%);font-size:var(--f3);color:var(--dim);pointer-events:none;font-weight:600}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.duo .fld{margin-bottom:0}
+
+.nav{display:flex;gap:10px;margin-top:clamp(16px,2.4vh,24px)}
+.bk{
+  flex:none;width:3.2em;border-radius:var(--r);
+  border:1.5px solid var(--line);background:transparent;
+  color:var(--dim);font-size:var(--f4);cursor:pointer;transition:.18s;
+}
+.bk:hover{background:var(--surf2);color:var(--bone)}
+.fwd{
+  flex:1;border:none;border-radius:var(--r);
+  background:linear-gradient(180deg,#FFC98A,#F5A552);
+  color:#08120E;font-family:inherit;font-size:var(--f4);font-weight:700;
+  padding:.95em;cursor:pointer;transition:.18s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35);
+}
+.fwd:hover{filter:brightness(1.06)}
+
+.lhead{text-align:center;margin-bottom:clamp(16px,2.4vh,24px)}
+.ltag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:var(--f5);font-weight:600;color:var(--apricot);
+  background:rgba(255,181,107,.1);border:1px solid rgba(255,181,107,.22);
+  border-radius:100px;padding:.45em 1em;margin-bottom:.9em;
+}
+.lhead .q{margin-bottom:.35em}
+.lhead p{font-size:var(--f5);color:var(--dim)}
+.fine{font-size:var(--f5);color:#7A9184;text-align:center;margin-top:1em}
+
+/* ═══════════ RESULTS ═══════════ */
+.res{
+  width:100%;max-width:min(1000px,94vw);
+  display:grid;grid-template-columns:.8fr 1.2fr;
+  gap:clamp(20px,3.5vw,56px);align-items:center;
+}
+
+.dial-wrap{display:flex;flex-direction:column;align-items:center;gap:calc(var(--sp)*.6)}
+.dial{position:relative;width:clamp(190px,26vw,300px)}
+.dial svg{width:100%;height:auto;display:block;overflow:visible}
+.dial .bg{fill:none;stroke:#1E3A2D;stroke-width:16;stroke-linecap:round}
+.dial .fg{
+  fill:none;stroke:url(#g1);stroke-width:16;stroke-linecap:round;
+  stroke-dasharray:329.9;stroke-dashoffset:329.9;
+  transition:stroke-dashoffset 1.5s cubic-bezier(.2,.75,.3,1);
+}
+.dial-core{
+  position:absolute;left:0;right:0;top:56%;
+  transform:translateY(-50%);text-align:center;
+}
+.dial-n{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(2.2rem, min(5.4vw, 8vh), 3.9rem);
+  line-height:.95;letter-spacing:-.035em;
+  font-variant-numeric:tabular-nums;
+}
+.dial-c{font-size:var(--f5);color:var(--dim);margin-top:.6em}
+.dial-ends{display:flex;justify-content:space-between;width:100%;font-size:var(--f5);color:#5D7A6B;margin-top:-.4em}
+
+.res-name{
+  font-family:'Fraunces',serif;font-size:var(--f3);
+  font-weight:600;text-align:center;line-height:1.25;
+}
+.res-name span{color:var(--mint)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.st{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:clamp(12px,1.8vh,18px)}
+.st-l{font-size:var(--f5);color:var(--dim);margin-bottom:.4em}
+.st-v{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(1.15rem, min(2.1vw, 3.4vh), 1.85rem);
+  line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+}
+.st-s{font-size:var(--f5);color:var(--dim);margin-top:.45em}
+
+.panel{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:clamp(13px,1.9vh,19px);margin-top:10px}
+.ph{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--f5);color:var(--dim);margin-bottom:.8em}
+.ph b{color:var(--bone);font-weight:600}
+
+.bmi{position:relative;height:9px;border-radius:5px;background:linear-gradient(90deg,#8FB5F5 0%,#7CEBAB 26%,#F2CE6B 58%,#FF8F6B 100%)}
+.pin{
+  position:absolute;top:50%;left:0;width:16px;height:16px;border-radius:50%;
+  background:var(--bone);border:3px solid var(--ink);
+  transform:translate(-50%,-50%);transition:left 1.2s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 0 0 1.5px rgba(242,239,231,.55);
+}
+.bmi-lg{display:flex;justify-content:space-between;font-size:var(--f5);color:#5D7A6B;margin-top:.6em}
+
+.mac{display:flex;height:10px;gap:3px;margin-bottom:.8em}
+.mac>i{border-radius:5px;transition:flex 1.1s ease}
+.mac-lg{display:flex;gap:clamp(10px,1.8vw,22px);flex-wrap:wrap}
+.mac-lg span{display:flex;align-items:center;gap:7px;font-size:var(--f5);color:var(--dim)}
+.mac-lg i{width:8px;height:8px;border-radius:50%;flex:none}
+.mac-lg b{color:var(--bone);font-weight:600;font-variant-numeric:tabular-nums}
+
+.cta{
+  margin-top:10px;
+  background:linear-gradient(120deg,rgba(124,235,171,.12),rgba(255,181,107,.08));
+  border:1px solid rgba(124,235,171,.24);border-radius:var(--r);
+  padding:clamp(14px,2vh,20px);
+  display:flex;align-items:center;gap:clamp(12px,1.6vw,20px);flex-wrap:wrap;
+}
+.cta-t{flex:1;min-width:190px}
+.cta-t strong{display:block;font-size:var(--f4);font-weight:700;line-height:1.3}
+.cta-t small{display:block;font-size:var(--f5);color:var(--dim);margin-top:.35em}
+.cta .btn{padding:.8em 1.6em;font-size:var(--f5);flex:none;box-shadow:0 .4em 1.4em -.4em rgba(255,181,107,.6),inset 0 1px 0 rgba(255,255,255,.35)}
+
+.tips-btn{
+  display:block;width:100%;margin-top:10px;background:none;border:none;cursor:pointer;
+  font-family:inherit;font-size:var(--f5);color:var(--dim);
+  text-decoration:underline;text-underline-offset:4px;text-align:center;padding:.5em;
+}
+.tips-btn:hover{color:var(--mint)}
+
+.tip{display:flex;gap:13px;padding:.85em 0}
+.tip+.tip{border-top:1px solid var(--line)}
+.tip i{width:2.2em;height:2.2em;flex:none;border-radius:10px;background:rgba(124,235,171,.1);display:grid;place-items:center;font-style:normal;font-size:var(--f4)}
+.tip p{font-size:var(--f5);color:var(--dim);line-height:1.55}
+.tip p b{color:var(--bone);font-weight:600}
+
+/* force every native control into the dark theme — fixes light autofill / system widgets on mobile */
+input,button,select,textarea{color-scheme:dark;-webkit-appearance:none;appearance:none}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow:0 0 0 1000px var(--surf2) inset !important;
+  -webkit-text-fill-color:var(--bone) !important;
+  caret-color:var(--bone);
+  transition:background-color 9999s ease-in-out 0s;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:860px){
+  .res{grid-template-columns:1fr;gap:clamp(14px,2.4vh,22px)}
+  .dial{width:clamp(150px,42vw,230px)}
+  .perks{gap:8px}
+  .perk{padding:11px 8px;gap:.4em}
+}
+@media(max-width:560px){
+  h1{max-width:100%}
+  .lede{max-width:34ch;margin-inline:auto}
+  .perks{grid-template-columns:1fr;gap:8px}
+  .perk{flex-direction:row;align-items:center;text-align:left;gap:12px;padding:13px 16px}
+  .perk svg{flex:none}
+  .perk div{flex:1}
+  .duo{grid-template-columns:1fr}
+  .stats{gap:7px}
+  .st{padding:11px 10px}
+  .sheet{max-height:92dvh}
+  .stop{padding:16px 18px}
+  .sbody{padding:18px 18px 26px}
+}
+@media(max-width:400px){
+  .lede{max-width:30ch}
+  .opt-i{width:2.15em;height:2.15em}
+}
+/* short viewports (small phones, in-app browser chrome, Quick Look preview):
+   shrink and compact the perks first — never hide content outright, the .hero
+   scroll fallback above (max-height:100%; overflow-y:auto) is the true safety net */
+@media(max-height:680px){
+  .perks{gap:6px}
+  .perk{padding:9px 12px;gap:10px;flex-direction:row;text-align:left}
+  .perk div{flex:1}
+  .perk svg{width:18px;flex:none}
+  .perk small{display:none}
+}
+@media(max-height:560px){
+  h1{font-size:clamp(1.7rem, min(5.6vw, 7vh), 4.4rem)}
+  .perks{display:none}
+}
+@media(orientation:landscape) and (max-height:560px){
+  .hero{max-width:min(860px,94vw)}
+  .lede{max-width:52ch;margin-inline:auto}
+  .perks{display:none}
+  .sheet{max-height:95dvh}
+  .res{grid-template-columns:.75fr 1.25fr}
+  .dial{width:clamp(130px,20vw,190px)}
+}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"></div>
+
+<!-- ═════════ HERO ═════════ -->
+<section class="screen on" id="scHero">
+  <div class="hero">
+    <span class="tag"><span class="dot"></span>Безкоштовно · 2 хвилини</span>
+
+    <h1>За скільки тижнів ви схуднете до <em>бажаної ваги</em>?</h1>
+
+    <p class="lede">Калькулятор порахує вашу добову норму калорій і БЖУ та покаже точну дату, коли ви досягнете цілі. Плюс безкоштовна консультація лікаря-дієтолога.</p>
+
+    <div class="perks">
+      <div class="perk">
+        <svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 6-7"/><path d="M14 8h5v5"/></svg>
+        <div><b>Норма калорій</b><small>за формулою Міффліна — БЖУ і вода</small></div>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="16" cy="15" r="1.6" fill="currentColor" stroke="none" style="fill:#7CEBAB"/></svg>
+        <div><b>Дата результату</b><small>коли саме ви прийдете до цілі</small></div>
+      </div>
+      <div class="perk">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.4-7 10-7 10z"/><path d="M12 10v4M10 12h4"/></svg>
+        <div><b>Лікар-дієтолог</b><small>консультація без оплати</small></div>
+      </div>
+    </div>
+
+    <div class="cta-zone">
+      <button class="btn" id="go">Розрахувати мій план</button>
+      <p class="note"><b>12 400</b> розрахунків уже зроблено</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ RESULTS ═════════ -->
+<section class="screen" id="scRes">
+  <div class="res">
+    <div class="dial-wrap">
+      <div class="dial">
+        <svg viewBox="0 0 260 145" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#3FBE83"/>
+              <stop offset="55%" stop-color="#7CEBAB"/>
+              <stop offset="100%" stop-color="#FFB56B"/>
+            </linearGradient>
+          </defs>
+          <path class="bg" d="M 25 130 A 105 105 0 0 1 235 130"/>
+          <path class="fg" id="arc" d="M 25 130 A 105 105 0 0 1 235 130"/>
+        </svg>
+        <div class="dial-core">
+          <div class="dial-n" id="oCal">0</div>
+          <div class="dial-c">ккал на день</div>
+        </div>
+      </div>
+      <div class="res-name"><span id="oName"></span>, ось ваш план</div>
+    </div>
+
+    <div>
+      <div class="stats">
+        <div class="st"><div class="st-l">Ваш ІМТ</div><div class="st-v" id="oBmi">—</div><div class="st-s" id="oBmiT">—</div></div>
+        <div class="st"><div class="st-l">Скинути</div><div class="st-v" id="oLose">—</div><div class="st-s" id="oTgt">—</div></div>
+        <div class="st"><div class="st-l">Термін</div><div class="st-v" id="oWk">—</div><div class="st-s" id="oDate">—</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><span>Індекс маси тіла</span><b id="oBmiB">—</b></div>
+        <div class="bmi"><div class="pin" id="oPin"></div></div>
+        <div class="bmi-lg"><span>16</span><span>18,5</span><span>25</span><span>30</span><span>40</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><span>Білки · Жири · Вуглеводи</span><b>на день</b></div>
+        <div class="mac"><i id="mP" style="background:#8FB5F5"></i><i id="mF" style="background:#FFB56B"></i><i id="mC" style="background:#7CEBAB"></i></div>
+        <div class="mac-lg">
+          <span><i style="background:#8FB5F5"></i>Білки <b id="oP">—</b></span>
+          <span><i style="background:#FFB56B"></i>Жири <b id="oF">—</b></span>
+          <span><i style="background:#7CEBAB"></i>Вуглеводи <b id="oC">—</b></span>
+          <span><i style="background:#5D7A6B"></i>Вода <b id="oW">—</b></span>
+        </div>
+      </div>
+
+      <div class="cta">
+        <div class="cta-t">
+          <strong>Безкоштовна консультація лікаря-дієтолога</strong>
+          <small>Розберемо ваш розрахунок і складемо меню під вас</small>
+        </div>
+        <a href="#" class="btn">Записатися</a>
+      </div>
+
+      <button class="tips-btn" id="openTips">Показати рекомендації під ваш результат</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ QUIZ ═════════ -->
+<div class="veil" id="veil">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="stop">
+      <div class="ruler"><svg viewBox="0 0 200 20" preserveAspectRatio="none"><g id="rg"></g></svg></div>
+      <div class="snum" id="sn">1/6</div>
+      <button class="x" id="closeQ" aria-label="Закрити">✕</button>
+    </div>
+    <div class="sbody">
+
+      <div class="step on" data-s="1">
+        <div class="q">Ваша стать</div>
+        <div class="opts">
+          <button class="opt" data-v="female"><span class="opt-i">👩</span><span><span class="opt-t">Жінка</span><span class="opt-d">Жіноча формула розрахунку</span></span></button>
+          <button class="opt" data-v="male"><span class="opt-i">👨</span><span><span class="opt-t">Чоловік</span><span class="opt-d">Чоловіча формула розрахунку</span></span></button>
+        </div>
+      </div>
+
+      <div class="step" data-s="2">
+        <div class="q">Параметри тіла</div>
+        <div class="fld">
+          <label for="iA">Вік</label>
+          <div class="fw"><input class="inp" id="iA" type="number" inputmode="numeric" placeholder="35"><span class="suf">років</span></div>
+        </div>
+        <div class="duo">
+          <div class="fld"><label for="iH">Зріст</label><div class="fw"><input class="inp" id="iH" type="number" inputmode="numeric" placeholder="165"><span class="suf">см</span></div></div>
+          <div class="fld"><label for="iW">Вага зараз</label><div class="fw"><input class="inp" id="iW" type="number" inputmode="decimal" placeholder="75"><span class="suf">кг</span></div></div>
+        </div>
+        <div class="nav"><button class="bk" data-b="1">←</button><button class="fwd" id="n2">Далі</button></div>
+      </div>
+
+      <div class="step" data-s="3">
+        <div class="q">Бажана вага</div>
+        <div class="fld">
+          <label for="iT">До якої ваги хочете прийти?</label>
+          <div class="fw"><input class="inp" id="iT" type="number" inputmode="decimal" placeholder="60"><span class="suf">кг</span></div>
+        </div>
+        <div class="nav"><button class="bk" data-b="2">←</button><button class="fwd" id="n3">Далі</button></div>
+      </div>
+
+      <div class="step" data-s="4">
+        <div class="q">Скільки ви рухаєтесь?</div>
+        <div class="opts">
+          <button class="opt" data-v="1.2"><span class="opt-i">🪑</span><span><span class="opt-t">Майже не рухаюсь</span><span class="opt-d">Сидяча робота, без тренувань</span></span></button>
+          <button class="opt" data-v="1.375"><span class="opt-i">🚶</span><span><span class="opt-t">Трохи ходжу</span><span class="opt-d">Прогулянки 1–3 рази на тиждень</span></span></button>
+          <button class="opt" data-v="1.55"><span class="opt-i">🏃</span><span><span class="opt-t">Регулярно тренуюсь</span><span class="opt-d">3–5 разів на тиждень</span></span></button>
+          <button class="opt" data-v="1.725"><span class="opt-i">💪</span><span><span class="opt-t">Тренуюсь інтенсивно</span><span class="opt-d">6–7 разів на тиждень</span></span></button>
+        </div>
+        <div class="nav"><button class="bk" data-b="3">←</button></div>
+      </div>
+
+      <div class="step" data-s="5">
+        <div class="q">Темп схуднення</div>
+        <div class="opts">
+          <button class="opt" data-v="0.5"><span class="opt-i">🌿</span><span><span class="opt-t">М'який — 0,5 кг/тиждень</span><span class="opt-d">Легко витримати, без зривів</span></span></button>
+          <button class="opt" data-v="0.75"><span class="opt-i">⚖️</span><span><span class="opt-t">Оптимальний — 0,75 кг/тиждень</span><span class="opt-d">Баланс швидкості та здоров'я</span></span></button>
+          <button class="opt" data-v="1"><span class="opt-i">🔥</span><span><span class="opt-t">Швидкий — 1 кг/тиждень</span><span class="opt-d">Потребує суворої дисципліни</span></span></button>
+        </div>
+        <div class="nav"><button class="bk" data-b="4">←</button></div>
+      </div>
+
+      <div class="step" data-s="6">
+        <div class="lhead">
+          <span class="ltag">👩‍⚕️ + консультація лікаря</span>
+          <div class="q">Розрахунок готовий</div>
+          <p>Куди надіслати ваш план і запис на консультацію?</p>
+        </div>
+        <div class="fld"><label for="iN">Ім'я</label><input class="inp" id="iN" type="text" placeholder="Як до вас звертатися?" style="padding-right:1em"></div>
+        <div class="fld"><label for="iTg">Логін у Telegram</label><div class="fw"><span class="pre">@</span><input class="inp" id="iTg" type="text" placeholder="username" style="padding-left:2.2em;padding-right:1em"></div></div>
+        <div class="nav"><button class="bk" data-b="5">←</button><button class="fwd" id="fin">Показати результат</button></div>
+        <p class="fine">Не надсилаємо спам. Дані не передаємо третім особам.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═════════ TIPS ═════════ -->
+<div class="veil" id="veilT">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="stop">
+      <div style="flex:1;font-size:var(--f3);font-family:'Fraunces',serif;font-weight:600">Рекомендації</div>
+      <button class="x" id="closeT" aria-label="Закрити">✕</button>
+    </div>
+    <div class="sbody" id="tipsBody"></div>
+  </div>
+</div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const D={};
+
+function ruler(step){
+  let h='';
+  for(let i=0;i<=30;i++){
+    const x=i*(200/30), maj=i%5===0;
+    h+=`<line class="${(i/30)<=(step/6)?'rf':'rt'}" x1="${x.toFixed(1)}" y1="${maj?3:7}" x2="${x.toFixed(1)}" y2="17"/>`;
+  }
+  $('#rg').innerHTML=h;
+}
+ruler(1);
+
+let cur=1;
+const go=n=>{cur=n;$$('.step').forEach(s=>s.classList.toggle('on',+s.dataset.s===n));$('#sn').textContent=n+'/6';ruler(n);$('.sbody').scrollTop=0};
+const openQ=()=>$('#veil').classList.add('on');
+const closeQ=()=>$('#veil').classList.remove('on');
+
+$('#go').addEventListener('click',openQ);
+$('#closeQ').addEventListener('click',closeQ);
+$('#veil').addEventListener('click',e=>{if(e.target===$('#veil'))closeQ()});
+$$('.bk').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.b)));
+
+function choice(s,k,nx){
+  $$(`.step[data-s="${s}"] .opt`).forEach(b=>b.addEventListener('click',function(){
+    $$(`.step[data-s="${s}"] .opt`).forEach(x=>x.classList.remove('sel'));
+    this.classList.add('sel');
+    D[k]=isNaN(+this.dataset.v)?this.dataset.v:+this.dataset.v;
+    setTimeout(nx,190);
+  }));
+}
+choice(1,'sex',()=>go(2)); choice(4,'act',()=>go(5)); choice(5,'rate',()=>go(6));
+
+const chk=(el,ok)=>{el.classList.toggle('bad',!ok);return ok};
+
+$('#n2').addEventListener('click',()=>{
+  const a=+$('#iA').value,h=+$('#iH').value,w=+$('#iW').value;
+  const r=[chk($('#iA'),a>=16&&a<=90),chk($('#iH'),h>=120&&h<=230),chk($('#iW'),w>=35&&w<=300)];
+  if(r.every(Boolean)){Object.assign(D,{age:a,h,w});go(3)}
+});
+$('#n3').addEventListener('click',()=>{
+  const t=+$('#iT').value;
+  if(chk($('#iT'),t>=35&&t<D.w)){D.t=t;go(4)}
+});
+$('#fin').addEventListener('click',()=>{
+  const n=$('#iN').value.trim(), tg=$('#iTg').value.trim().replace(/^@/,'');
+  if(![chk($('#iN'),n.length>1),chk($('#iTg'),tg.length>2)].every(Boolean))return;
+  D.name=n;D.tg=tg;
+  /* ─── LEAD HOOK: тут відправляєш D у Supabase / бекенд ─── */
+  console.log('LEAD',D);
+  render();
+});
+
+const MO=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
+
+function render(){
+  const{sex,age,h,w,t,act,rate,name}=D;
+  const bmr=10*w+6.25*h-5*age+(sex==='male'?5:-161);
+  let cal=Math.round((bmr*act-(rate*7700/7))/10)*10;
+  const fl=sex==='female'?1200:1500; if(cal<fl)cal=fl;
+
+  const bmi=w/((h/100)**2), lose=w-t, wk=Math.ceil(lose/rate);
+  const d=new Date(); d.setDate(d.getDate()+wk*7);
+  const P=Math.round(cal*.30/4), F=Math.round(cal*.25/9), C=Math.round(cal*.45/4);
+  const water=(t*32/1000).toFixed(1);
+
+  closeQ();
+  $('#scHero').classList.remove('on');
+  $('#scRes').classList.add('on');
+
+  $('#oName').textContent=name.split(' ')[0];
+  $('#oBmi').textContent=bmi.toFixed(1).replace('.',',');
+  $('#oBmiB').textContent=bmi.toFixed(1).replace('.',',');
+  $('#oBmiT').textContent=bmi<18.5?'нижче норми':bmi<25?'у нормі':bmi<30?'надмірна':'ожиріння';
+  $('#oLose').textContent='−'+lose.toFixed(1).replace('.0','').replace('.',',')+' кг';
+  $('#oTgt').textContent='до '+t+' кг';
+  $('#oWk').textContent=wk+' тиж.';
+  $('#oDate').textContent=d.getDate()+' '+MO[d.getMonth()];
+  $('#oP').textContent=P+' г'; $('#oF').textContent=F+' г'; $('#oC').textContent=C+' г';
+  $('#oW').textContent=water.replace('.',',')+' л';
+
+  const frac=Math.min(1,Math.max(.07,(cal-1000)/2000));
+  requestAnimationFrame(()=>{
+    $('#arc').style.strokeDashoffset=329.9*(1-frac);
+    $('#oPin').style.left=Math.min(98,Math.max(2,(bmi-16)/24*100))+'%';
+    $('#mP').style.flex=P; $('#mF').style.flex=F*2.2; $('#mC').style.flex=C;
+  });
+
+  const el=$('#oCal'); let n=0, st=Math.ceil(cal/36);
+  const iv=setInterval(()=>{n+=st; if(n>=cal){n=cal;clearInterval(iv)} el.textContent=n.toLocaleString('uk-UA')},30);
+
+  const tips=[
+    ['🍽',`<b>Ваша норма — ${cal} ккал.</b> Розділіть на 3 прийоми їжі та 1 перекус. Основа тарілки: білок плюс овочі.`],
+    ['🥩',`<b>${P} г білка щодня.</b> Це головне, що зберігає м'язи під час дефіциту — м'ясо, риба, яйця, сир.`],
+    ['💧',`<b>${water.replace('.',',')} л води.</b> Склянка за 30 хвилин до їжі помітно знижує апетит.`],
+    ['😴',`<b>7–8 годин сну.</b> Недосип піднімає грелін — гормон голоду, і зриви стають майже неминучими.`],
+    ['📏',`<b>Зважування раз на тиждень</b>, вранці натщесерце. Вага коливається щодня — тижневий зріз чесніший.`]
+  ];
+  if(bmi>=30)tips.unshift(['🩺','<b>ІМТ вище 30.</b> Перед стартом дієти обов\'язково проконсультуйтеся з лікарем — саме це можна зробити безкоштовно за формою вище.']);
+  $('#tipsBody').innerHTML=tips.map(([i,p])=>`<div class="tip"><i>${i}</i><p>${p}</p></div>`).join('');
+}
+
+$('#openTips').addEventListener('click',()=>$('#veilT').classList.add('on'));
+$('#closeT').addEventListener('click',()=>$('#veilT').classList.remove('on'));
+$('#veilT').addEventListener('click',e=>{if(e.target===$('#veilT'))$('#veilT').classList.remove('on')});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeQ();$('#veilT').classList.remove('on')}
+  if(e.key==='Enter'&&$('#veil').classList.contains('on')){const b=$(`.step[data-s="${cur}"] .fwd`);if(b)b.click()}
+});
+})();
+</script>
+</body>
+</html>
