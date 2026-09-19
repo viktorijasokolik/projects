@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Покроковий план виходу зі стресу — за 1 годину</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F7F4EF;--bg-alt:#EDE8DF;--surface:#FDFCFA;
+  --dark:#1C1917;--darker:#0F0E0C;
+  --ink:#1C1917;--text-2:#44403C;--muted:#78716C;--muted-2:#A8A29E;
+  --accent:#C2714F;--accent-dark:#A0573A;--accent-deep:#8A4828;--accent-tint:#F9EDE7;
+  --sage:#5C7A6B;--sage-tint:#EAF1EC;
+  --border:#DDD8D0;--border-dark:rgba(255,255,255,.10);--glass-dark:rgba(255,255,255,.06);
+  --rp:100px;--rc:24px;--rs:12px;
+  --fh:'Lora',Georgia,serif;--fb:'Inter',-apple-system,sans-serif;
+  --mx:1160px;--pad:clamp(20px,4vw,40px);--gap:clamp(64px,10vw,120px);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text-2);line-height:1.65;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.w{max-width:var(--mx);margin:0 auto;padding:0 var(--pad)}
+h1{font-family:var(--fh);font-size:clamp(36px,5vw,56px);font-weight:500;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+h2{font-family:var(--fh);font-size:clamp(32px,4.5vw,48px);font-weight:500;line-height:1.1;letter-spacing:-.015em;color:var(--ink)}
+h3{font-family:var(--fb);font-size:20px;font-weight:500;line-height:1.35;color:var(--ink)}
+.ai{font-family:var(--fh);font-style:italic;font-weight:400;color:var(--accent)}
+.ey{font-family:var(--fb);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';width:20px;height:1.5px;background:var(--accent)}
+.ey-c{justify-content:center}.ey-c::before{display:none}
+.lead{font-size:17px;color:var(--text-2);max-width:560px;line-height:1.7;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:var(--rp);font-family:var(--fb);font-size:16px;font-weight:500;border:none;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);text-decoration:none;position:relative;overflow:hidden}
+.btn-p{background:var(--accent);color:#fff;padding:16px 36px;box-shadow:0 4px 20px rgba(194,113,79,.18)}
+.btn-p:hover{background:var(--accent-dark);transform:translateY(-2px) scale(1.02);box-shadow:0 8px 30px rgba(194,113,79,.28)}
+.btn-sg{background:var(--sage);color:#fff;padding:16px 36px;box-shadow:0 4px 20px rgba(92,122,107,.12)}
+.btn-sg:hover{background:#4e6b5c;transform:translateY(-2px) scale(1.02)}
+.btn-gh{background:var(--surface);color:var(--ink);border:1.5px solid var(--border);padding:16px 32px}
+.btn-gh::after{content:'→';margin-left:6px;transition:transform .3s}.btn-gh:hover{border-color:var(--ink);transform:translateY(-2px)}.btn-gh:hover::after{transform:translateX(4px)}
+.btn-p::before,.btn-sg::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .5s}.btn-p:hover::before,.btn-sg:hover::before{left:100%}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rc);padding:28px;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(28,25,23,.08)}
+.ic{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ic svg{width:24px;height:24px;stroke-width:1.5;fill:none}
+.ic-a{background:var(--accent-tint)}.ic-a svg{stroke:var(--accent)}
+.ic-s{background:var(--sage-tint)}.ic-s svg{stroke:var(--sage)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out}.rv.v{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ═══ HERO — aurora + typewriter ═══ */
+.hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px var(--pad) 32px;position:relative;overflow:hidden}
+.aurora{position:absolute;inset:0;z-index:0}
+.ao{position:absolute;border-radius:50%;filter:blur(120px);opacity:.3;will-change:transform}
+.ao1{width:55vw;height:55vw;max-width:650px;max-height:650px;background:#E8D5C4;top:-20%;left:-8%;animation:a1 18s ease-in-out infinite}
+.ao2{width:40vw;height:40vw;max-width:500px;max-height:500px;background:#C2714F;bottom:-10%;right:-8%;opacity:.12;animation:a2 14s ease-in-out infinite}
+.ao3{width:30vw;height:30vw;max-width:380px;max-height:380px;background:#5C7A6B;top:35%;left:55%;opacity:.1;animation:a3 20s ease-in-out infinite}
+@keyframes a1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4vw,3vw) scale(1.06)}}
+@keyframes a2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-3vw,-2vw) scale(1.1)}}
+@keyframes a3{0%,100%{transform:translate(0,0)}33%{transform:translate(3vw,-2vw)}66%{transform:translate(-2vw,2vw)}}
+.hd{position:absolute;pointer-events:none;opacity:.09;z-index:1}
+.hd1{top:8%;left:5%;width:110px;animation:hf 10s ease-in-out infinite}
+.hd2{top:12%;right:7%;width:90px;animation:hf 8s ease-in-out infinite reverse}
+.hd3{bottom:14%;left:10%;width:70px;animation:hf 12s ease-in-out infinite .5s}
+.hd4{bottom:10%;right:4%;width:120px;animation:hf 11s ease-in-out infinite .3s}
+@keyframes hf{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(3deg)}}
+.hero-in{position:relative;z-index:2;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(253,252,250,.7);backdrop-filter:blur(8px);border:1px solid rgba(194,113,79,.1);border-radius:var(--rp);font-size:14px;font-weight:500;color:var(--accent-deep);margin-bottom:20px}
+.hbd{width:7px;height:7px;border-radius:50%;background:var(--sage);position:relative}
+.hbd::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid var(--sage);animation:bp 2s ease-out infinite}
+@keyframes bp{0%{transform:scale(1);opacity:.6}100%{transform:scale(2);opacity:0}}
+.tw{position:relative;display:inline}.twc{display:inline-block;width:3px;height:.85em;background:var(--accent);vertical-align:text-bottom;margin-left:3px;animation:bk 1s step-end infinite}
+@keyframes bk{50%{opacity:0}}
+.hero-sub{font-size:clamp(16px,1.8vw,19px);color:var(--muted);max-width:540px;margin:16px auto 0;line-height:1.7;opacity:0;animation:fu .8s .5s ease-out forwards}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px;opacity:0;animation:fu .8s .8s ease-out forwards}
+.hero-proof{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);opacity:0;animation:fu .8s 1s ease-out forwards}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hp-i{display:flex;flex-direction:column;align-items:center;gap:2px}
+.hp-n{font-family:var(--fh);font-size:28px;font-weight:500;color:var(--ink)}.hp-l{font-size:13px;color:var(--muted)}
+
+/* ═══ RECOGNIZE — simple grid, staggered ═══ */
+.sec-rec{padding:clamp(48px,8vw,100px) 0;background:var(--bg-alt)}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.rec-card{display:flex;gap:18px;align-items:flex-start}
+.rec-card h3{margin-bottom:4px;font-size:17px}
+.rec-card p{font-size:16px;color:var(--muted);line-height:1.7}
+
+/* ═══ METHOD ═══ */
+.sec-met{padding:var(--gap) 0;background:var(--surface)}
+.met-list{margin-top:48px}
+.met-i{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start;padding:28px 0;border-bottom:1px solid var(--border)}
+.met-i:first-child{padding-top:0}.met-i:last-child{border-bottom:none}
+.mn{font-family:var(--fh);font-size:40px;font-weight:400;color:var(--accent);opacity:.35;line-height:1}
+.met-i h3{margin-bottom:6px}.met-i p{font-size:16px;line-height:1.7}
+.qb{margin-top:48px;padding:36px;background:var(--bg);border-radius:var(--rc);position:relative}
+.qb::before{content:'"';font-family:var(--fh);font-size:72px;line-height:.7;color:var(--accent);position:absolute;top:24px;left:32px;opacity:.25}
+.qt{font-family:var(--fh);font-style:italic;font-size:clamp(22px,2.8vw,30px);color:var(--ink);line-height:1.45;margin-bottom:18px;padding-left:40px}
+.qcl{display:flex;flex-direction:column;gap:10px;padding-left:40px}
+.qc{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--text-2)}
+.qci{width:26px;height:26px;border-radius:50%;background:var(--sage-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qci svg{width:13px;height:13px;stroke:var(--sage);stroke-width:2.5;fill:none}
+
+/* ═══ RESULTS — counters ═══ */
+.sec-res{padding:var(--gap) 0;background:var(--bg-alt)}
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.res-i{text-align:center}.res-i .ic{margin:0 auto 14px}
+.rn{font-family:var(--fh);font-size:40px;font-weight:500;color:var(--ink);line-height:1;margin-bottom:4px}
+.res-i p{font-size:16px;color:var(--muted);line-height:1.55;margin-top:4px}
+
+/* ═══ TESTI — glassmorphism + tilt ═══ */
+.sec-t{padding:var(--gap) 0;background:var(--bg)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.tc{background:rgba(253,252,250,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(221,216,208,.5);border-radius:var(--rc);padding:32px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;will-change:transform}
+.tc:hover{box-shadow:0 24px 60px rgba(28,25,23,.1)}
+.ts{color:var(--accent);font-size:18px;letter-spacing:2px;margin-bottom:14px}
+.tt{font-family:var(--fh);font-style:italic;font-size:16px;color:var(--ink);line-height:1.7;margin-bottom:20px}
+.tw2{display:flex;align-items:center;gap:12px}
+.ta{width:40px;height:40px;border-radius:50%;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:var(--accent-deep)}
+.tn{font-weight:500;font-size:16px;color:var(--ink)}.tsub{font-size:13px;color:var(--muted)}
+
+/* ═══ EXPERT ═══ */
+.sec-e{padding:var(--gap) 0;background:var(--surface)}
+.eg{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start;margin-top:48px}
+.ep{width:100%;aspect-ratio:3/4;border-radius:36px;background:#E6DED2;display:flex;align-items:center;justify-content:center;color:var(--muted-2);font-size:13px;box-shadow:0 20px 60px rgba(28,25,23,.1);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.ep:hover{transform:scale(1.02)}
+.ep::after{content:'фото спеціаліста';position:absolute;bottom:12px;left:12px;right:12px;padding:7px;background:rgba(28,25,23,.3);backdrop-filter:blur(6px);border-radius:8px;color:#fff;font-size:11px;text-align:center}
+.ec{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:20px}
+.ec li{display:flex;align-items:center;gap:14px;font-size:16px;color:var(--text-2)}
+.eb{width:46px;height:46px;border-radius:var(--rs);background:var(--accent-tint);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;color:var(--accent-deep);flex-shrink:0}
+
+/* ═══ FAQ ═══ */
+.sec-f{padding:var(--gap) 0;background:var(--bg)}
+.fl{margin-top:48px;max-width:760px}
+.fi{border-bottom:1px solid var(--border)}.fi:first-child{border-top:1px solid var(--border)}
+.fiq{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 0;background:none;border:none;font-family:var(--fh);font-size:18px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left;gap:16px;line-height:1.3}
+.fia{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:14px;color:var(--muted);font-weight:300}
+.fi.open .fia{background:var(--accent-tint);border-color:var(--accent);color:var(--accent);transform:rotate(45deg)}
+.fian{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}.fi.open .fian{max-height:300px}
+.fian-in{padding:0 0 22px;font-size:16px;color:var(--text-2);line-height:1.7}
+
+/* ═══ FINAL CTA — gradient + magnetic ═══ */
+.sec-fin{padding:var(--gap) 0}
+.fin-box{border-radius:32px;padding:clamp(48px,7vw,88px);text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#E8D5C4,#F9EDE7,#EAF1EC,#E8D5C4);background-size:300% 300%;animation:gs 12s ease infinite}
+@keyframes gs{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.fin-box h2{color:var(--ink);max-width:500px;margin:0 auto 14px}
+.fin-box p{color:var(--text-2);font-size:19px;max-width:420px;margin:0 auto 36px}
+.mw{display:inline-block;position:relative}.mg{position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(194,113,79,.18),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;z-index:0}.mw:hover .mg{opacity:1}
+.mb{display:inline-flex;align-items:center;gap:10px;padding:20px 52px;background:var(--dark);color:var(--surface);border:none;border-radius:var(--rp);font-family:var(--fb);font-size:17px;font-weight:600;cursor:pointer;position:relative;z-index:1;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .3s;box-shadow:0 4px 20px rgba(28,25,23,.12)}
+.mb:hover{box-shadow:0 8px 40px rgba(28,25,23,.18)}
+
+/* ═══ CONTACT ═══ */
+.sec-cta{padding:var(--gap) 0;background:var(--dark);color:#fff}.sec-cta h2{color:#fff}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.cl{display:flex;flex-direction:column;gap:12px}
+.clk{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:var(--glass-dark);border:1px solid var(--border-dark);border-radius:16px;transition:background .25s;cursor:pointer}.clk:hover{background:rgba(255,255,255,.1)}
+.cll{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:2px}.clv{font-size:17px;color:#fff}
+.cf{display:flex;flex-direction:column;gap:14px}
+.fg label{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.fg input,.fg textarea{width:100%;padding:14px 16px;background:rgba(255,255,255,.05);border:1px solid var(--border-dark);border-radius:10px;color:#fff;font-family:var(--fb);font-size:16px;font-weight:300;outline:none;transition:border-color .25s;resize:vertical}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2)}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent)}
+.bw{background:#fff;color:var(--ink);font-weight:600;padding:16px 36px;box-shadow:0 4px 16px rgba(0,0,0,.06);border-radius:var(--rp);border:none;font-family:var(--fb);font-size:14px;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);width:100%}.bw:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;color:rgba(255,255,255,.35)}
+
+/* ═══ FIXED CTA ═══ */
+.fcta-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);z-index:90;display:flex;flex-direction:column;align-items:center;gap:0;opacity:0;visibility:hidden;pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.fcta-wrap.show{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.fcta-badge{padding:5px 16px;background:var(--accent-tint);border:1px solid rgba(194,113,79,.15);border-radius:var(--rp);font-size:11px;font-weight:600;color:var(--accent-deep);letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);position:relative;z-index:2;margin-bottom:-10px}
+.fcta-btn{padding:18px 44px;background:var(--accent);color:#fff;border-radius:var(--rp);font-family:var(--fb);font-size:16px;font-weight:600;cursor:pointer;border:none;box-shadow:0 8px 36px rgba(194,113,79,.3);transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;white-space:nowrap}
+.fcta-btn:hover{background:var(--accent-dark);transform:translateY(-2px) scale(1.02);box-shadow:0 12px 44px rgba(194,113,79,.35)}
+.fcta-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .5s}.fcta-btn:hover::before{left:100%}
+
+/* ═══ QUIZ POPUP — warm editorial ═══ */
+.qov{position:fixed;inset:0;z-index:200;background:rgba(28,25,23,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s}
+.qov.open{opacity:1;pointer-events:auto}
+.qm{background:var(--bg);border:1px solid var(--border);border-radius:var(--rc);max-width:540px;width:100%;max-height:90vh;overflow-y:auto;padding:clamp(32px,5vw,52px);position:relative;transform:translateY(16px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 24px 80px rgba(28,25,23,.15)}
+.qov.open .qm{transform:translateY(0) scale(1)}
+.qx{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;color:var(--muted);font-size:20px;font-weight:300}
+.qx:hover{border-color:var(--ink);color:var(--ink);background:var(--accent-tint)}
+.qh{text-align:center;margin-bottom:32px}
+.qh h2{font-size:clamp(28px,4vw,38px);margin-bottom:10px}
+.qh p{font-size:16px;color:var(--muted);line-height:1.6}
+.qprog{display:flex;gap:8px;justify-content:center;margin-bottom:32px}
+.qp{height:5px;border-radius:3px;background:var(--border);transition:all .5s cubic-bezier(.16,1,.3,1)}
+.qp{width:44px}.qp.on{background:var(--accent);width:64px}.qp.done{background:var(--sage)}
+.qs{display:none;flex-direction:column;align-items:center;animation:qi .4s ease}.qs.on{display:flex}
+@keyframes qi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.qq{font-family:var(--fh);font-size:clamp(22px,3vw,28px);font-weight:500;text-align:center;margin-bottom:24px;color:var(--ink)}
+.qog{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.qo{padding:18px 20px;border:1.5px solid var(--border);border-radius:var(--rs);background:var(--surface);cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:14px;font-size:16px;font-weight:400;color:var(--text-2)}
+.qoi{flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--bg);border:1px solid var(--border);transition:all .25s}
+.qo:hover{border-color:var(--accent);background:var(--accent-tint);transform:translateY(-2px)}.qo:hover .qoi{background:var(--accent-tint);border-color:var(--accent)}
+.qo.sel{border-color:var(--accent);background:var(--accent-tint)}.qo.sel .qoi{background:var(--accent);border-color:var(--accent);color:#fff}
+/* quiz form */
+.qf{width:100%;max-width:400px;margin:0 auto}
+.qf-g{margin-bottom:14px}
+.qf-g label{display:block;font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.qf-g input{width:100%;padding:16px 18px;border:1.5px solid var(--border);border-radius:var(--rs);font-family:var(--fb);font-size:16px;font-weight:300;background:var(--surface);outline:none;transition:border-color .25s,box-shadow .25s;color:var(--ink)}
+.qf-g input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(194,113,79,.06)}
+.qf-g input::placeholder{color:var(--muted-2)}
+/* phone with flag */
+.phone-wrap{position:relative;display:flex;align-items:center}
+.phone-flag{position:absolute;left:14px;font-size:20px;pointer-events:none;z-index:1}
+.phone-wrap input{padding-left:44px}
+.qf .btn{width:100%;justify-content:center;padding:18px;margin-top:6px;font-size:16px}
+.qok{text-align:center;padding:20px 0}
+.qok-ico{width:68px;height:68px;border-radius:50%;background:var(--sage-tint);margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.qok-ico svg{width:30px;height:30px;stroke:var(--sage);stroke-width:2.5;fill:none}
+.qok h3{font-family:var(--fh);font-size:24px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.qok p{font-size:16px;color:var(--muted)}
+
+@media(max-width:1200px){.res-grid{grid-template-columns:repeat(4,1fr)}.t-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.hero{padding:20px var(--pad) 28px}h1{font-size:clamp(32px,5vw,44px)}.rec-grid{grid-template-columns:1fr 1fr}.res-grid{grid-template-columns:1fr 1fr}.t-grid{grid-template-columns:1fr}.eg{grid-template-columns:1fr}.ep{max-width:260px}.cg{grid-template-columns:1fr}.qog{grid-template-columns:1fr}}
+@media(max-width:640px){.hero{min-height:auto;min-height:auto;padding:16px var(--pad) 24px}.hero-btns{flex-direction:column;align-items:center;gap:10px}.hero-btns .btn{width:100%;justify-content:center;padding:14px 24px;font-size:14px}.hero-sub{font-size:15px}.hero-badge{font-size:12px;padding:6px 14px}.hp-n{font-size:24px}.card{padding:24px}.ic{width:48px;height:48px}.ic svg{width:22px;height:22px}h2{font-size:clamp(26px,6vw,34px)}.ey{font-size:12px}.lead{font-size:15px}.fcta-btn{padding:16px 32px;font-size:15px}.rec-grid,.res-grid{grid-template-columns:1fr}.met-i{grid-template-columns:44px 1fr;gap:14px}.mn{font-size:36px}.hero-proof{flex-direction:column;gap:16px}}
+@media(max-width:380px){h1{font-size:28px}.hero-badge{font-size:11px}.card{padding:20px}.rec-grid{gap:10px}.met-i{gap:10px}.qog{grid-template-columns:1fr}.eg{gap:28px}.qm{padding:24px}}
+</style>
+</head>
+<body>
+
+<div class="fcta-wrap" id="fcta"><div class="fcta-badge">безкоштовно</div><button class="fcta-btn" onclick="openQ()">Записатися на консультацію</button></div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="aurora"><div class="ao ao1"></div><div class="ao ao2"></div><div class="ao ao3"></div></div>
+  <div class="hd hd1"><svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="52" fill="none" stroke="#C2714F" stroke-width=".8"/><circle cx="55" cy="55" r="34" fill="none" stroke="#C2714F" stroke-width=".4"/></svg></div>
+  <div class="hd hd2"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="none" stroke="#5C7A6B" stroke-width=".8"/></svg></div>
+  <div class="hd hd3"><svg viewBox="0 0 70 70"><rect x="10" y="10" width="50" height="50" rx="16" fill="none" stroke="#C2714F" stroke-width=".6" transform="rotate(12 35 35)"/></svg></div>
+  <div class="hd hd4"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="none" stroke="#5C7A6B" stroke-width=".6"/></svg></div>
+
+  <div class="hero-in">
+    <div class="hero-badge" style="opacity:0;animation:fu .6s .1s ease-out forwards"><span class="hbd"></span>Безкоштовно · залишилось 5 місць</div>
+    <h1 style="opacity:0;animation:fu .6s .2s ease-out forwards">За 1 годину ви отримаєте<br><span class="tw"><span class="ai" id="twT"></span><span class="twc"></span></span><br>виходу зі стресу</h1>
+    <p class="hero-sub">Не «просто поговорити». Діагностична сесія, після якої у вас на руках — документ з конкретними кроками: що робити, де поставити межу, як повернути сили</p>
+    <div class="hero-btns">
+      <button class="btn btn-p" onclick="openQ()">Записатися на безкоштовну сесію</button>
+      <button class="btn btn-sg" onclick="openQ()">Пройти тест · 2 хв</button>
+    </div>
+    <div class="hero-proof">
+      <div class="hp-i"><span class="hp-n">800+</span><span class="hp-l">сесій проведено</span></div>
+      <div class="hp-i"><span class="hp-n">92%</span><span class="hp-l">відчули зміни за 2 тижні</span></div>
+      <div class="hp-i"><span class="hp-n">1 год</span><span class="hp-l">і у вас є план</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECOGNIZE ═══ -->
+<section class="sec-rec">
+  <div class="w">
+    <div class="ey rv">Чи впізнаєте ви себе?</div>
+    <h2 class="rv d1">Якщо хоча б одне —<br>вам потрібна <span class="ai">ця сесія</span></h2>
+    <p class="lead rv d2">Це не слабкість. Це сигнал, що пора зупинитися</p>
+    <div class="rec-grid">
+      <div class="rec-card card rv d1"><div class="ic ic-a"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div><div><h3>Просинаєтесь уже розбитою</h3><p>Сон не рятує. Ранок починається з тривоги — і ви включаєте режим «вижити ще один день»</p></div></div>
+      <div class="rec-card card rv d2"><div class="ic ic-s"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h3>Тримаєте все на собі</h3><p>Діти, робота, побут — все на вас. Попросити допомогу здається слабкістю. Всередині — порожнеча</p></div></div>
+      <div class="rec-card card rv d3"><div class="ic ic-a"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><h3>Зриваєтесь на близьких</h3><p>Крик, сльози — а потім провина. Замкнене коло, з якого не видно виходу</p></div></div>
+      <div class="rec-card card rv d4"><div class="ic ic-s"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><h3>Тіло кричить — ви ігноруєте</h3><p>Головний біль, безсоння, затиски. Тіло давно просить паузу — а зупинитися страшно</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METHOD ═══ -->
+<section class="sec-met">
+  <div class="w">
+    <div class="ey rv">Що ви отримаєте за 1 годину</div>
+    <h2 class="rv d1">Від дзвінка — до <span class="ai">конкретного</span> плану</h2>
+    <p class="lead rv d2">Ви вийдете з сесії з документом — вашим персональним планом дій</p>
+    <div class="met-list">
+      <div class="met-i rv d1"><div class="mn">01</div><div><h3>Діагностика: знаходимо корінь</h3><p>Що вас виснажує — глибинно. Яка потреба заблокована, де ви платите собою за чужий комфорт</p></div></div>
+      <div class="met-i rv d2"><div class="mn">02</div><div><h3>Покроковий план: дії на кожен тиждень</h3><p>Конкретний маршрут: що прибрати першим, де поставити межу, яку звичку змінити</p></div></div>
+      <div class="met-i rv d3"><div class="mn">03</div><div><h3>Перші зміни через 14 днів</h3><p>92% відчувають різницю: інший сон, менше зривів. Без таблеток — через розуміння і кроки</p></div></div>
+      <div class="met-i rv d4"><div class="mn">04</div><div><h3>Нова норма — жити без напруження</h3><p>Розпізнавати стрес і зупиняти його. Більше не «терпіти» — просто жити інакше</p></div></div>
+    </div>
+    <div class="qb rv">
+      <div class="qt">Моя задача — допомогти побачити те, що ви давно відчуваєте, але не дозволяєте собі визнати</div>
+      <div class="qcl">
+        <div class="qc"><div class="qci"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>Покроковий план ви забираєте з собою</div>
+        <div class="qc"><div class="qci"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>Без осудження — тільки підтримка</div>
+        <div class="qc"><div class="qci"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>Результат навіть якщо не продовжите</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTS ═══ -->
+<section class="sec-res">
+  <div class="w" style="text-align:center">
+    <div class="ey ey-c rv">Результати</div>
+    <h2 class="rv d1">Що змінюється <span class="ai">після</span> плану</h2>
+    <div class="res-grid" id="rg">
+      <div class="res-i rv d1"><div class="ic ic-a"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div><div class="rn" data-to="92" data-s="%">0%</div><h3>Спокійний сон</h3><p>Перестають прокидатися від тривоги за 2 тижні</p></div>
+      <div class="res-i rv d2"><div class="ic ic-s"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="rn" data-to="3" data-p="×">×0</div><h3>Менше зривів</h3><p>Падає втричі за місяць</p></div>
+      <div class="res-i rv d3"><div class="ic ic-a"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div class="rn" data-to="14" data-s=" днів">0 днів</div><h3>Перші зміни</h3><p>До відчутної різниці</p></div>
+      <div class="res-i rv d4"><div class="ic ic-s"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="rn" data-to="800" data-s="+">0+</div><h3>Жінок пройшли</h3><p>Кожна починала так само</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTI ═══ -->
+<section class="sec-t">
+  <div class="w">
+    <div class="ey rv">Відгуки</div>
+    <h2 class="rv d1">Жінки, які вже <span class="ai">видихнули</span></h2>
+    <div class="t-grid">
+      <div class="tc rv d1" onmousemove="tlt(event,this)" onmouseleave="utlt(this)"><div class="ts">★★★★★</div><div class="tt">«Після першої сесії зрозуміла, скільки тримала в собі. План — найкраще, що сталося за рік. Через місяць — сплю і не зриваюсь»</div><div class="tw2"><div class="ta">ОМ</div><div><div class="tn">Олена, 34</div><div class="tsub">підприємець · лютий 2026</div></div></div></div>
+      <div class="tc rv d2" onmousemove="tlt(event,this)" onmouseleave="utlt(this)"><div class="ts">★★★★★</div><div class="tt">«Думала — таблетки. А потрібен був хтось, хто скаже: зупинись. За два тижні зникли головні болі, що мучили 3 роки»</div><div class="tw2"><div class="ta">ІК</div><div><div class="tn">Ірина, 41</div><div class="tsub">керівник · січень 2026</div></div></div></div>
+      <div class="tc rv d3" onmousemove="tlt(event,this)" onmouseleave="utlt(this)"><div class="ts">★★★★★</div><div class="tt">«Мені дали план на 4 тижні. Виконала перші пункти — чоловік запитав: що з тобою? Ти інша. Нарешті перестала кричати»</div><div class="tw2"><div class="ta">НС</div><div><div class="tn">Наталія, 38</div><div class="tsub">бухгалтер · грудень 2025</div></div></div></div>
+    </div>
+    <div style="margin-top:24px" class="rv d4"><button class="btn btn-gh">Показати всі відгуки</button></div>
+  </div>
+</section>
+
+<!-- ═══ EXPERT ═══ -->
+<section class="sec-e">
+  <div class="w">
+    <div class="ey rv">Ваш психолог</div>
+    <h2 class="rv d1">Ім'я <span class="ai">Прізвище</span></h2>
+    <div class="eg">
+      <div class="ep rv d2"></div>
+      <div>
+        <p class="rv d2" style="font-size:17px;line-height:1.75;margin-bottom:12px">Працюю з жінками, які звикли тримати все на собі. За 1 годину будую план, який змінює спосіб, яким ви живете.</p>
+        <ul class="ec rv d3">
+          <li><div class="eb">КПТ</div><div><strong>Когнітивно-поведінкова терапія</strong><br><span style="font-size:13px;color:var(--muted)">Сертифікація, 2020</span></div></li>
+          <li><div class="eb">СТ</div><div><strong>Схема-терапія</strong><br><span style="font-size:13px;color:var(--muted)">Сертифікація, 2022</span></div></li>
+          <li><div class="eb">800+</div><div><strong>Індивідуальних сесій</strong><br><span style="font-size:13px;color:var(--muted)">7 років практики</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="sec-f">
+  <div class="w">
+    <div class="ey rv">Питання</div>
+    <h2 class="rv d1">Часті <span class="ai">питання</span></h2>
+    <div class="fl">
+      <div class="fi rv d1"><button class="fiq" onclick="togF(this)"><span>Що я отримаю за 1 годину?</span><span class="fia">+</span></button><div class="fian"><div class="fian-in">Діагностику стресу, розуміння причини і покроковий план дій. План — ваш документ, ви забираєте його з собою.</div></div></div>
+      <div class="fi rv d2"><button class="fiq" onclick="togF(this)"><span>Це справді безкоштовно?</span><span class="fia">+</span></button><div class="fian"><div class="fian-in">Так. Ви отримаєте план незалежно від того, чи продовжите.</div></div></div>
+      <div class="fi rv d3"><button class="fiq" onclick="togF(this)"><span>А якщо я «просто трохи втомилась»?</span><span class="fia">+</span></button><div class="fian"><div class="fian-in">80% клієнток казали те саме. Часто за цим стоїть набагато більше.</div></div></div>
+      <div class="fi rv d4"><button class="fiq" onclick="togF(this)"><span>Як проходить сесія?</span><span class="fia">+</span></button><div class="fian"><div class="fian-in">Zoom, 1 година, з будь-якої точки світу. Готуватися не треба.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="sec-fin">
+  <div class="w">
+    <div class="fin-box rv">
+      <div class="ey ey-c" style="justify-content:center">Запис</div>
+      <h2>Ви заслуговуєте на <span class="ai">спокій</span></h2>
+      <p>Запишіться — і через годину у вас буде план</p>
+      <div class="mw" id="mw"><div class="mg" id="mgw"></div><button class="mb" onclick="openQ()">ЗАПИСАТИСЯ НА СЕСІЮ →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="sec-cta">
+  <div class="w">
+    <div class="ey rv" style="color:var(--accent)">Контакти</div>
+    <h2 class="rv d1">Зробіть перший <span class="ai">крок</span></h2>
+    <div class="cg">
+      <div>
+        <p class="rv d2" style="color:rgba(255,255,255,.5);font-size:17px;line-height:1.75;margin-bottom:24px">Напишіть зручним способом або заповніть форму</p>
+        <div class="cl rv d3">
+          <div class="clk"><div><div class="cll">Telegram</div><div class="clv">@username</div></div><span style="color:rgba(255,255,255,.3)">→</span></div>
+          <div class="clk"><div><div class="cll">Instagram</div><div class="clv">@username</div></div><span style="color:rgba(255,255,255,.3)">→</span></div>
+          <div class="clk"><div><div class="cll">Телефон</div><div class="clv">+380 XX XXX XX XX</div></div><span style="color:rgba(255,255,255,.3)">→</span></div>
+        </div>
+      </div>
+      <div class="cf rv d4">
+        <div class="fg"><label>Ім'я</label><input placeholder="Як до вас звертатися"></div>
+        <div class="fg"><label>Телефон або Telegram</label><input placeholder="+380 або @username"></div>
+        <div class="fg"><label>Повідомлення</label><textarea rows="3" placeholder="Опишіть ситуацію (необов'язково)"></textarea></div>
+        <button class="bw" onclick="this.innerHTML='Дякуємо! Зв\'яжемося протягом 24 год ✓';this.disabled=true;this.style.opacity='.7'">Надіслати →</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer><div class="w">© 2026 Ім'я Прізвище. Усі права захищені.</div></footer>
+
+<!-- ═══ QUIZ POPUP ═══ -->
+<div class="qov" id="qov" onclick="if(event.target===this)closeQ()">
+  <div class="qm">
+    <button class="qx" onclick="closeQ()">×</button>
+    <div class="qh">
+      <div class="ey ey-c" style="justify-content:center;margin-bottom:14px">Тест · 2 хвилини</div>
+      <h2>Ваш рівень <span class="ai">стресу</span></h2>
+      <p>Три питання — і ми підберемо план саме для вас</p>
+    </div>
+    <div class="qprog" id="qP"><div class="qp on"></div><div class="qp"></div><div class="qp"></div><div class="qp"></div></div>
+    <div id="qB">
+      <div class="qs on" data-s="1"><div class="qq">Що найбільше виснажує вас <span class="ai">зараз?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">👩‍👧‍👦</div><span>Діти, побут і робота</span></div><div class="qo" onclick="pk(this)"><div class="qoi">😰</div><span>Постійна тривога</span></div><div class="qo" onclick="pk(this)"><div class="qoi">😤</div><span>Конфлікти і зриви</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🫠</div><span>Порожнеча і вигорання</span></div></div></div>
+      <div class="qs" data-s="2"><div class="qq">Як давно ви в <span class="ai">цьому</span> стані?</div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">📅</div><span>Кілька тижнів</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🗓️</div><span>Кілька місяців</span></div><div class="qo" onclick="pk(this)"><div class="qoi">📆</div><span>Більше року</span></div><div class="qo" onclick="pk(this)"><div class="qoi">♾️</div><span>Не пам'ятаю інакше</span></div></div></div>
+      <div class="qs" data-s="3"><div class="qq">Що ви вже <span class="ai">пробували?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">📚</div><span>Книги, медитації</span></div><div class="qo" onclick="pk(this)"><div class="qoi">💊</div><span>Таблетки, вітаміни</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🏋️‍♀️</div><span>Спорт, йога</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🤷‍♀️</div><span>Нічого не пробувала</span></div></div></div>
+      <div class="qs" data-s="4">
+        <div class="qq">Ваш план <span class="ai">готовий</span></div>
+        <div class="qf">
+          <div class="qf-g"><label>Ваше ім'я</label><input id="qN" placeholder="Як до вас звертатися"></div>
+          <div class="qf-g"><label>Телефон</label><div class="phone-wrap"><span class="phone-flag" id="pFlag">🇺🇦</span><input id="qPh" placeholder="+380 XX XXX XX XX" oninput="fmtPh(this)"></div></div>
+          <div class="qf-g"><label>Telegram або Instagram</label><input id="qMs" placeholder="@username (необов'язково)"></div>
+          <button class="btn btn-p" onclick="sendQ()">ЗАПИСАТИСЯ НА СЕСІЮ →</button>
+        </div>
+      </div>
+      <div class="qs" data-s="5">
+        <div class="qok">
+          <div class="qok-ico"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3>Дякуємо!</h3>
+          <p>Зв'яжемося протягом 24 годин і домовимося про зручний час</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* reveal */
+const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
+
+/* fixed cta */
+addEventListener('scroll',()=>{document.getElementById('fcta').classList.toggle('show',scrollY>500)});
+
+/* typewriter */
+const twW=["покроковий план","чіткий маршрут","конкретні кроки"];
+let ti=0,tc=0,td=false,te=document.getElementById('twT');
+function twT(){const w=twW[ti];if(!td){tc++;te.textContent=w.slice(0,tc);if(tc===w.length){setTimeout(()=>{td=true;twT()},2200);return}}else{tc--;te.textContent=w.slice(0,tc);if(tc===0){td=false;ti=(ti+1)%twW.length}}setTimeout(twT,td?40:80)}
+setTimeout(twT,1200);
+
+/* counters */
+let ct=false;
+const co=new IntersectionObserver(e=>{if(e[0].isIntersecting&&!ct){ct=true;document.querySelectorAll('.rn').forEach(el=>{const to=+el.dataset.to,s=el.dataset.s||'',p=el.dataset.p||'';let c=0;const st=Math.max(1,Math.floor(to/40));const iv=setInterval(()=>{c=Math.min(c+st,to);el.textContent=p+c+s;if(c>=to)clearInterval(iv)},30)})}},{threshold:.3});
+co.observe(document.getElementById('rg'));
+
+/* tilt */
+function tlt(e,el){const r=el.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(600px) rotateY(${x*5}deg) rotateX(${-y*5}deg) translateY(-4px)`}
+function utlt(el){el.style.transform=''}
+
+/* magnetic btn */
+const mw=document.getElementById('mw'),mgw=document.getElementById('mgw'),mbtn=mw?.querySelector('.mb');
+if(mw){mw.onmousemove=e=>{const r=mw.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;mbtn.style.transform=`translate(${(x-r.width/2)*.12}px,${(y-r.height/2)*.12}px)`;mgw.style.left=x+'px';mgw.style.top=y+'px'};mw.onmouseleave=()=>{mbtn.style.transform=''}}
+
+/* faq */
+function togF(b){const i=b.closest('.fi'),o=i.classList.contains('open');document.querySelectorAll('.fi').forEach(f=>f.classList.remove('open'));if(!o)i.classList.add('open')}
+
+/* quiz */
+function openQ(){document.getElementById('qov').classList.add('open');document.body.style.overflow='hidden'}
+function closeQ(){document.getElementById('qov').classList.remove('open');document.body.style.overflow=''}
+addEventListener('keydown',e=>{if(e.key==='Escape')closeQ()});
+let cs=1;
+function pk(el){el.closest('.qs').querySelectorAll('.qo').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');setTimeout(()=>gQ(cs+1),300)}
+function gQ(n){document.querySelectorAll('.qs').forEach(s=>s.classList.remove('on'));cs=n;document.querySelector(`.qs[data-s="${cs}"]`).classList.add('on');document.querySelectorAll('.qp').forEach((d,i)=>{d.classList.remove('on','done');if(i<cs-1)d.classList.add('done');else if(i===cs-1)d.classList.add('on')})}
+function sendQ(){const n=document.getElementById('qN').value.trim(),p=document.getElementById('qPh').value.trim();if(!n){document.getElementById('qN').style.borderColor='var(--accent)';return}if(!p||p.length<10){document.getElementById('qPh').style.borderColor='var(--accent)';return}gQ(5)}
+
+/* phone auto-detect & format */
+const phData={UA:{flag:'🇺🇦',code:'+380',mask:'+380 XX XXX XX XX',len:12},PL:{flag:'🇵🇱',code:'+48',mask:'+48 XXX XXX XXX',len:11},DE:{flag:'🇩🇪',code:'+49',mask:'+49 XXX XXXXXXX',len:13},US:{flag:'🇺🇸',code:'+1',mask:'+1 (XXX) XXX-XXXX',len:11},CZ:{flag:'🇨🇿',code:'+420',mask:'+420 XXX XXX XXX',len:12}};
+function detectCountry(v){const d=v.replace(/\D/g,'');if(d.startsWith('380'))return'UA';if(d.startsWith('48'))return'PL';if(d.startsWith('49'))return'DE';if(d.startsWith('1')&&d.length>1)return'US';if(d.startsWith('420'))return'CZ';return'UA'}
+function fmtPh(inp){
+  let v=inp.value;
+  if(v==='+')return;
+  if(!v.startsWith('+'))v='+'+v.replace(/[^\d]/g,'');
+  const cc=detectCountry(v);
+  const info=phData[cc];
+  document.getElementById('pFlag').textContent=info.flag;
+  inp.placeholder=info.mask;
+  /* format digits */
+  let d=v.replace(/\D/g,'');
+  if(cc==='UA'&&d.length>0){
+    if(!d.startsWith('380'))d='380'+d.replace(/^380/,'');
+    let f='+380';
+    const r=d.slice(3);
+    if(r.length>0)f+=' '+r.slice(0,2);
+    if(r.length>2)f+=' '+r.slice(2,5);
+    if(r.length>5)f+=' '+r.slice(5,7);
+    if(r.length>7)f+=' '+r.slice(7,9);
+    inp.value=f;
+  } else {
+    inp.value='+'+d;
+  }
+}
+/* set default */
+document.getElementById('qPh').value='+380 ';
+</script>
+</body>
+</html>
