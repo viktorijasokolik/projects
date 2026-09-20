@@ -3,7 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Покроковий план виходу зі стресу — за 1 годину</title>
+<title>Покроковий план виходу зі стресу — за 1 годину | Ім'я Прізвище, психолог</title>
+<meta name="description" content="Безкоштовна діагностична консультація з психологом. За 1 годину — покроковий план виходу зі стресу. 800+ сесій, 92% клієнток відчувають зміни за 2 тижні.">
+<meta name="keywords" content="психолог, консультація психолога, стрес, вигорання, онлайн консультація">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Покроковий план виходу зі стресу — за 1 годину">
+<meta property="og:description" content="Безкоштовна діагностична консультація з психологом. За 1 годину — покроковий план виходу зі стресу.">
+<meta property="og:image" content="https://example.com/og-image.jpg">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Покроковий план виходу зі стресу — за 1 годину">
+<meta name="twitter:description" content="Безкоштовна діагностична консультація з психологом">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍂</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -47,8 +61,11 @@ h3{font-family:var(--fb);font-size:20px;font-weight:500;line-height:1.35;color:v
 .ic-s{background:var(--sage-tint)}.ic-s svg{stroke:var(--sage)}
 
 /* hero offer plate */
-.hero-plate{display:block;max-width:580px;margin:16px auto 0;padding:16px 28px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:17px;color:var(--text-2);line-height:1.7;opacity:0;animation:fu .8s .55s ease-out forwards;text-align:center;box-shadow:0 4px 20px rgba(28,25,23,.04)}
-.hero-plate strong{font-weight:500;color:var(--ink)}
+.hero-boosts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:640px;margin:20px auto 0;opacity:0;animation:fu .8s .55s ease-out forwards}
+.hero-boost{display:inline-flex;align-items:center;gap:8px;padding:10px 18px 10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rp);font-size:14px;color:var(--text-2);box-shadow:0 2px 10px rgba(28,25,23,.03);transition:transform .3s,box-shadow .3s}
+.hero-boost:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(28,25,23,.07)}
+.hero-boost-ic{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--accent-tint);display:flex;align-items:center;justify-content:center}
+.hero-boost-ic svg{width:14px;height:14px;stroke:var(--accent);stroke-width:2;fill:none}
 
 /* enhanced rec cards */
 .rec-card{position:relative;overflow:hidden}
@@ -267,6 +284,9 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
   .hero{min-height:auto;padding:36px var(--pad) 44px}
   h1{font-size:42px!important;line-height:1.15!important}
   .hero-sub{font-size:18px!important;line-height:1.7;margin:24px auto 0}
+  .hero-boost{font-size:13px;padding:8px 14px 8px 10px}
+  .hero-boost-ic{width:22px;height:22px}
+  .hero-boost-ic svg{width:12px;height:12px}
   .hero-badge{font-size:14px;padding:10px 20px}
   .hero-btns{flex-direction:column;align-items:stretch;gap:14px;margin-top:32px}
   .hero-btns .btn{width:100%;justify-content:center;padding:20px 24px;font-size:17px;border-radius:16px}
@@ -384,7 +404,11 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
   <div class="hero-in">
     <div class="hero-badge" style="opacity:0;animation:fu .6s .1s ease-out forwards,badgeFloat 3s 1.5s ease-in-out infinite"><span class="hbd"></span>Безкоштовно · залишилось 5 місць</div>
     <h1 style="opacity:0;animation:fu .6s .2s ease-out forwards">За 1 годину ви отримаєте<br><span class="tw"><span class="ai" id="twT"></span><span class="twc"></span></span><br>виходу зі стресу</h1>
-    <div class="hero-plate">Діагностична сесія, після якої у вас на руках — <strong>документ з конкретними кроками</strong>: що робити, де поставити межу, як повернути сили</div>
+    <div class="hero-boosts">
+      <span class="hero-boost"><span class="hero-boost-ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span>Навіть якщо вже пробували</span>
+      <span class="hero-boost"><span class="hero-boost-ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span>Без осуду та зайвих порад</span>
+      <span class="hero-boost"><span class="hero-boost-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>Допомогла 500+ жінкам</span>
+    </div>
     <div class="hero-btns">
       <button class="btn btn-p" onclick="openQ()">Записатися безкоштовно</button>
       <a href="#method" class="btn btn-sg">Як проходить консультація</a>
