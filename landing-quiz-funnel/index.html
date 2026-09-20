@@ -200,24 +200,30 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
 /* ═══ QUIZ POPUP — warm editorial ═══ */
 .qov{position:fixed;inset:0;z-index:200;background:rgba(28,25,23,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .35s}
 .qov.open{opacity:1;pointer-events:auto}
-.qm{background:var(--bg);border:1px solid var(--border);border-radius:var(--rc);max-width:540px;width:100%;max-height:90vh;overflow-y:auto;padding:clamp(32px,5vw,52px);position:relative;transform:translateY(16px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 24px 80px rgba(28,25,23,.15)}
+.qm{background:var(--bg);border:1px solid var(--border);border-radius:var(--rc);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:clamp(32px,5vw,52px);position:relative;transform:translateY(16px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 24px 80px rgba(28,25,23,.15)}
 .qov.open .qm{transform:translateY(0) scale(1)}
 .qx{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;color:var(--muted);font-size:20px;font-weight:300}
 .qx:hover{border-color:var(--ink);color:var(--ink);background:var(--accent-tint)}
-.qh{text-align:center;margin-bottom:32px}
-.qh h2{font-size:clamp(28px,4vw,38px);margin-bottom:10px}
+.qh{text-align:center;margin-bottom:24px;transition:margin .3s ease}
+.qh h2{font-size:clamp(22px,3vw,28px);transition:opacity .25s,max-height .25s}
+.qh p{margin-top:2px;font-size:15px;transition:opacity .25s,max-height .25s}
+.qh.compact{margin-bottom:16px}
+.qh.compact h2,.qh.compact p{display:none}
 .qh p{font-size:16px;color:var(--muted);line-height:1.6}
 .qprog{display:flex;gap:8px;justify-content:center;margin-bottom:32px}
 .qp{height:5px;border-radius:3px;background:var(--border);transition:all .5s cubic-bezier(.16,1,.3,1)}
 .qp{width:44px}.qp.on{background:var(--accent);width:64px}.qp.done{background:var(--sage)}
 .qs{display:none;flex-direction:column;align-items:center;animation:qi .4s ease}.qs.on{display:flex}
 @keyframes qi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.qq{font-family:var(--fh);font-size:clamp(22px,3vw,28px);font-weight:500;text-align:center;margin-bottom:24px;color:var(--ink)}
+.qq{font-family:var(--fh);font-size:clamp(22px,3vw,28px);font-weight:500;text-align:center;margin-bottom:24px;color:var(--ink);max-width:580px;margin-left:auto;margin-right:auto}
 .qog{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
 .qo{padding:18px 20px;border:1.5px solid var(--border);border-radius:var(--rs);background:var(--surface);cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:14px;font-size:16px;font-weight:400;color:var(--text-2)}
-.qoi{flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--bg);border:1px solid var(--border);transition:all .25s}
-.qo:hover{border-color:var(--accent);background:var(--accent-tint);transform:translateY(-2px)}.qo:hover .qoi{background:var(--accent-tint);border-color:var(--accent)}
-.qo.sel{border-color:var(--accent);background:var(--accent-tint)}.qo.sel .qoi{background:var(--accent);border-color:var(--accent);color:#fff}
+.qo:hover{border-color:var(--accent);background:var(--accent-tint);transform:translateY(-2px)}
+.qoi{flex-shrink:0;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--bg);border:1px solid var(--border);transition:all .25s;color:var(--text-2)}
+.qoi svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;fill:none}
+.qo:hover .qoi{background:var(--accent-tint);border-color:var(--accent);color:var(--accent)}
+.qo.sel .qoi{background:var(--accent);border-color:var(--accent);color:#fff}
+.qo.sel{border-color:var(--accent);background:var(--accent-tint)}
 /* quiz form */
 .qf{width:100%;max-width:400px;margin:0 auto}
 .qf-g{margin-bottom:14px}
@@ -233,6 +239,13 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
 .phone-wrap input:focus{box-shadow:none!important}
 .qf .btn{width:100%;justify-content:center;padding:18px;margin-top:6px;font-size:16px}
 .qok{text-align:center;padding:20px 0}
+.qog-1col{grid-template-columns:1fr}
+.qgift{text-align:center;padding:12px 0}
+.qgift-ico{width:72px;height:72px;border-radius:50%;background:var(--accent-tint);margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
+.qgift-ico svg{width:32px;height:32px;stroke:var(--accent);stroke-width:1.6;fill:none}
+.qgift h3{font-family:var(--fh);font-size:24px;font-weight:500;color:var(--ink);margin-bottom:10px}
+.qgift p{font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto}
+.qgift-btn{width:100%;justify-content:center;padding:18px}
 .qok-ico{width:68px;height:68px;border-radius:50%;background:var(--sage-tint);margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
 .qok-ico svg{width:30px;height:30px;stroke:var(--sage);stroke-width:2.5;fill:none}
 .qok h3{font-family:var(--fh);font-size:24px;font-weight:500;color:var(--ink);margin-bottom:8px}
@@ -374,7 +387,7 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
     <div class="hero-plate">Діагностична сесія, після якої у вас на руках — <strong>документ з конкретними кроками</strong>: що робити, де поставити межу, як повернути сили</div>
     <div class="hero-btns">
       <button class="btn btn-p" onclick="openQ()">Записатися безкоштовно</button>
-      <button class="btn btn-sg" onclick="openQ()">Пройти тест · 2 хв</button>
+      <a href="#method" class="btn btn-sg">Як проходить консультація</a>
     </div>
     <div class="hero-proof">
       <div class="hp-i"><span class="hp-n">800+</span><span class="hp-l">сесій проведено</span></div>
@@ -400,7 +413,7 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
 </section>
 
 <!-- ═══ METHOD ═══ -->
-<section class="sec-met">
+<section class="sec-met" id="method">
   <div class="w">
     <div class="ey rv">Що ви отримаєте за 1 годину</div>
     <h2 class="rv d1">Від дзвінка — до <span class="ai">конкретного</span> плану</h2>
@@ -524,30 +537,54 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
 <div class="qov" id="qov" onclick="if(event.target===this)closeQ()">
   <div class="qm">
     <button class="qx" onclick="closeQ()">×</button>
-    <div class="qh">
-      <div class="ey ey-c" style="justify-content:center;margin-bottom:14px">Тест · 2 хвилини</div>
-      <h2>Ваш рівень <span class="ai">стресу</span></h2>
-      <p>Три питання — і ми підберемо план саме для вас</p>
+    <div class="qh" id="qHead">
+      <div class="ey ey-c" style="justify-content:center;margin-bottom:6px">Ім'я Прізвище · Психолог</div>
+      <h2 style="margin-bottom:6px">Безкоштовна <span class="ai">консультація</span></h2>
+      <p>Дайте відповідь на кілька запитань — і я підготую персональний план до нашої зустрічі</p>
     </div>
     <div class="qprog" id="qP"><div class="qp on"></div><div class="qp"></div><div class="qp"></div><div class="qp"></div></div>
     <div id="qB">
-      <div class="qs on" data-s="1"><div class="qq">Що найбільше виснажує вас <span class="ai">зараз?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">👩‍👧‍👦</div><span>Діти, побут і робота</span></div><div class="qo" onclick="pk(this)"><div class="qoi">😰</div><span>Постійна тривога</span></div><div class="qo" onclick="pk(this)"><div class="qoi">😤</div><span>Конфлікти і зриви</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🫠</div><span>Порожнеча і вигорання</span></div></div></div>
-      <div class="qs" data-s="2"><div class="qq">Як давно ви в <span class="ai">цьому</span> стані?</div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">📅</div><span>Кілька тижнів</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🗓️</div><span>Кілька місяців</span></div><div class="qo" onclick="pk(this)"><div class="qoi">📆</div><span>Більше року</span></div><div class="qo" onclick="pk(this)"><div class="qoi">♾️</div><span>Не пам'ятаю інакше</span></div></div></div>
-      <div class="qs" data-s="3"><div class="qq">Що ви вже <span class="ai">пробували?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi">📚</div><span>Книги, медитації</span></div><div class="qo" onclick="pk(this)"><div class="qoi">💊</div><span>Таблетки, вітаміни</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🏋️‍♀️</div><span>Спорт, йога</span></div><div class="qo" onclick="pk(this)"><div class="qoi">🤷‍♀️</div><span>Нічого не пробувала</span></div></div></div>
+      <div class="qs on" data-s="1"><div class="qq">Що найбільше виснажує вас <span class="ai">зараз?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><span>Діти, побут і робота</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M12 8v4M12 16h.01"/><circle cx="12" cy="12" r="10"/></svg></div><span>Постійна тривога</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span>Конфлікти і зриви</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 11v2M22 12h-4"/></svg></div><span>Порожнеча і вигорання</span></div></div></div>
+      <div class="qs" data-s="2"><div class="qq">Як давно ви в <span class="ai">цьому</span> стані?</div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><span>Кілька тижнів</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/></svg></div><span>Кілька місяців</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span>Більше року</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M8.5 8.5a3.5 3.5 0 100 7 4.5 4.5 0 003.5-2 4.5 4.5 0 003.5 2 3.5 3.5 0 100-7 4.5 4.5 0 00-3.5 2 4.5 4.5 0 00-3.5-2z"/></svg></div><span>Не пам'ятаю інакше</span></div></div></div>
+      <div class="qs" data-s="3"><div class="qq">Що ви вже <span class="ai">пробували?</span></div><div class="qog"><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><span>Книги, медитації</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M10.5 20.5L3.5 13.5a4.95 4.95 0 117-7l7 7a4.95 4.95 0 01-7 7z"/><path d="M8.5 8.5l7 7"/></svg></div><span>Таблетки, вітаміни</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span>Спорт, йога</span></div><div class="qo" onclick="pk(this)"><div class="qoi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 4M12 17h.01"/></svg></div><span>Нічого не пробувала</span></div></div></div>
+
+      <!-- КВАЛІФІКАЦІЯ: готовність інвестувати час і гроші в результат.
+           М'яка ніша (психологія/коучинг/здоров'я) — питання нижче.
+           Тверда ніша (бізнес/фінанси/продажі) — замінити на питання про рівень доходу
+           з варіантами-«вилками», де нижній поріг веде на ЦЕ Ж питання про готовність інвестувати,
+           а верхній поріг одразу веде на data-qual="yes" (форма). -->
       <div class="qs" data-s="4">
-        <div class="qq">Ваш план <span class="ai">готовий</span></div>
+        <div class="qq">Якщо консультація дасть результат — чи готові ви <span class="ai">інвестувати</span> час та гроші в вирішення своєї проблеми?</div>
+        <div class="qog qog-1col">
+          <div class="qo" data-qual="yes" onclick="pkQual(this)"><div class="qoi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><span>Так, результат важливіший</span></div>
+          <div class="qo" data-qual="yes" onclick="pkQual(this)"><div class="qoi"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 11h20"/></svg></div><span>Так, якщо є розстрочка</span></div>
+          <div class="qo" data-qual="no" onclick="pkQual(this)"><div class="qoi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 3"/></svg></div><span>Ні, не поспішаю</span></div>
+        </div>
+      </div>
+
+      <div class="qs" data-s="5">
+        <div class="qq">Заповніть форму — і оберемо <span class="ai">зручний час</span></div>
         <div class="qf">
-          <div class="qf-g"><label>Ваше ім'я</label><input id="qN" placeholder="Як до вас звертатися"></div>
-          <div class="qf-g"><label>Телефон</label><div class="phone-wrap"><span class="phone-code" id="pCode">🇺🇦 +380</span><input id="qPh" type="tel" inputmode="numeric" placeholder="67 123 45 67" oninput="fmtPh(this)"></div></div>
-          <div class="qf-g"><label>Telegram або Instagram</label><input id="qMs" placeholder="@username (необов'язково)"></div>
+          <div class="qf-g"><input id="qN" placeholder="Ваше ім'я"></div>
+          <div class="qf-g"><div class="phone-wrap"><span class="phone-code" id="pCode">🇺🇦 +380</span><input id="qPh" type="tel" inputmode="numeric" placeholder="67 123 45 67" oninput="fmtPh(this)"></div></div>
+          <div class="qf-g"><input id="qMs" placeholder="Telegram або Instagram @username (необов'язково)"></div>
           <button class="btn btn-p" onclick="sendQ()">ЗАПИСАТИСЯ НА СЕСІЮ →</button>
         </div>
       </div>
-      <div class="qs" data-s="5">
+      <div class="qs" data-s="6">
         <div class="qok">
           <div class="qok-ico"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
           <h3>Дякуємо!</h3>
           <p>Зв'яжемося протягом 24 годин і домовимося про зручний час</p>
+        </div>
+      </div>
+      <!-- ГІЛКА «НЕ ГОТОВА» — подарунок замість форми контактів -->
+      <div class="qs" data-s="7">
+        <div class="qgift">
+          <div class="qgift-ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13M7.5 8a2.5 2.5 0 010-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 010 5"/></svg></div>
+          <h3>Ось невеличкий подарунок для вас</h3>
+          <p>Поки ви не готові до консультації — заберіть безкоштовний чек-лист «5 кроків, щоб почати менше нервувати вже сьогодні»</p>
+          <a href="#" class="btn btn-p qgift-btn">Отримати чек-лист →</a>
         </div>
       </div>
     </div>
@@ -557,6 +594,14 @@ footer{padding:24px 0;background:var(--darker);text-align:center;font-size:13px;
 <script>
 /* reveal */
 const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('v');obs.unobserve(i.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+
+/* smooth anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
 document.querySelectorAll('.rv').forEach(e=>obs.observe(e));
 
 /* fixed cta */
@@ -585,12 +630,18 @@ if(mw){mw.onmousemove=e=>{const r=mw.getBoundingClientRect();const x=e.clientX-r
 function togF(b){const i=b.closest('.fi'),o=i.classList.contains('open');document.querySelectorAll('.fi').forEach(f=>f.classList.remove('open'));if(!o)i.classList.add('open')}
 
 /* quiz */
-function openQ(){document.getElementById('qov').classList.add('open');document.body.style.overflow='hidden'}
+function openQ(){document.getElementById('qov').classList.add('open');document.body.style.overflow='hidden';cs=1;document.getElementById('qHead').classList.remove('compact');gQ(1)}
 function closeQ(){document.getElementById('qov').classList.remove('open');document.body.style.overflow=''}
 addEventListener('keydown',e=>{if(e.key==='Escape')closeQ()});
 let cs=1;
 function pk(el){el.closest('.qs').querySelectorAll('.qo').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');setTimeout(()=>gQ(cs+1),300)}
-function gQ(n){document.querySelectorAll('.qs').forEach(s=>s.classList.remove('on'));cs=n;document.querySelector(`.qs[data-s="${cs}"]`).classList.add('on');document.querySelectorAll('.qp').forEach((d,i)=>{d.classList.remove('on','done');if(i<cs-1)d.classList.add('done');else if(i===cs-1)d.classList.add('on')})}
+function pkQual(el){
+  el.closest('.qs').querySelectorAll('.qo').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  const ready=el.dataset.qual==='yes';
+  setTimeout(()=>gQ(ready?5:7),300);
+}
+function gQ(n){document.querySelectorAll('.qs').forEach(s=>s.classList.remove('on'));cs=n;document.querySelector(`.qs[data-s="${cs}"]`).classList.add('on');document.querySelectorAll('.qp').forEach((d,i)=>{d.classList.remove('on','done');if(i<cs-1)d.classList.add('done');else if(i===cs-1)d.classList.add('on')});document.getElementById('qHead').classList.toggle('compact',cs>1)}
 function sendQ(){
   const n=document.getElementById('qN').value.trim();
   const digits=document.getElementById('qPh').value.replace(/\D/g,'');
